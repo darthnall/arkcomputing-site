@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+       Product Details
+      </h1>
+      {% if searchword %}
+       <p class="subtitle">
+        {{ searchword }}
+       </p>
+       {% else %}
+       <p class="subtitle">
+        No product entered.
+       </p>
+       {% endif %}
+      <button class="button is-primary">Confirm</button>
+    </div>
+  </section>
+{% endblock content %}
