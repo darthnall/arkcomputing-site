@@ -16,11 +16,10 @@ def home():
 @client_bp.route("/store", methods = ["POST", "GET"])
 @client_bp.route("/shop",  methods = ["POST", "GET"])
 def store():
-    error = None
     if request.method == "POST":
         searchword = request.args.get("product")
-        return render_template("product.html", searchword=searchword, brand=brand, title="Store")
-    return render_template("store.html", brand=brand, title="Store")
+        return render_template("store/details.html", searchword=searchword, brand=brand, title="Store")
+    return render_template("store/home.html", brand=brand, title="Store")
 
 # Static routes
 @client_bp.route("/store")

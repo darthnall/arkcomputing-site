@@ -1,2 +1,3 @@
-@import "bulma/sass/utilities/_all.sass"
-@import "bulma/sass/elements/button.sass"
+.button {
+    background-color: #123f12;
+}
