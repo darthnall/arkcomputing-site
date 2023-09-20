@@ -1,3 +1,7 @@
+:root {
+    --accent: yellow;
+}
+
 html {
     font-family: "Noto Sans", sans-serif;
 }
@@ -5,7 +9,42 @@ html {
 body {
     margin: 0;
     padding: 0;
-    font-size: 48px;
+    font-size: 24px;
+    background-color: #000101;
+}
+
+img {
+    max-width: 100%;
+}
+
+a p {
+    color: white;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.image-container {
+    flex: 0 0 30%;
+    position: relative;
+}
+
+.text-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 10px;
+    width: 100%;
+}
+
+.text-content {
+    flex: 0 0 65%;
 }
 
 nav a {

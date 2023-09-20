@@ -7,11 +7,8 @@ import os
 
 client_bp = Blueprint("client", __name__)
 
-client = Client(
-        fullname = "Ark Computing LLC",
-        brand = "Ark Computing",
-        homepage = "https://arkcomputing.net"
-        )
+client = Client(name=os.environ["CLIENT_NAME"])
+staff = client.staff()
 
 # Static routes
 @client_bp.route("/")
@@ -28,6 +25,6 @@ def store():
     return render_template("store.html", client=client, title="Store")
 
 # Static routes
-@client_bp.route("/store")
-def product(id=str(0)):
-    return render_template('product.html', client=client, title=id)
+@client_bp.route("/about")
+def about():
+    return render_template("about/home.html", client=client, staff=staff, title="About")

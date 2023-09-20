@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     	<meta charset="utf-8">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 	{% if title %}
-		<title>{{ title.title() }} | {{ brand.title() }}</title>
+		<title>{{ title.title() }} | {{ client.brand() }}</title>
 	{% else %}
-		<title>{{ brand.title() }}</title>
+		<title>{{ client.brand() }}</title>
 	{% endif %}
 </head>
 <body>
-    {% include "navbar.html" %}
+    {% include "layout/navbar.html" %}
     {% block content %}{% endblock %}
-    {% include "footer.html" %}
+    {% include "layout/footer.html" %}
 </body>
 </html>
