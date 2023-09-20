@@ -4,17 +4,20 @@
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
 	{% if title %}
-		<title>{{ title.title() }} | {{ brand.title() }}</title>
+		<title>{{ client.brand.title() }} | {{ title.title() }}</title>
 	{% else %}
-		<title>{{ brand.title() }}</title>
+		<title>{{ client.brand.title() }}</title>
 	{% endif %}
 </head>
 <body>
+    {% include "layout/navbar.html" %}
     <main>
-        {% include "layout/navbar.html" %}
         {% block content %}{% endblock %}
-        {% include "layout/footer.html" %}
     </main>
+    {% include "layout/footer.html" %}
 </body>
 </html>
