@@ -2,13 +2,6 @@ from website.db import db
 from sqlalchemy import Integer, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
-class Report(db.Model):
-    id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    date: Mapped[DateTime] = mapped_column(DateTime, unique=False, nullable=True)
-    start_date = db.Column(db.String(12), unique=False, nullable=False)
-    end_date = db.Column(db.String(12), unique=False, nullable=False)
-    prices = db.relationship('Build', back_populates='build')
-
 
 class User(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -17,6 +10,19 @@ class User(db.Model):
     password: Mapped[str] = mapped_column(String(60), unique=False, nullable=False)
     profile_picture: Mapped[str] = mapped_column(String(20), unique=False, nullable=False)
 
+class Product(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    name: Mapped[str] = mapped_column(String(12), unique=False, nullable=False)
+    name: Mapped[str] = mapped_column(String(12), unique=False, nullable=False)
+
+# Future inventory stuff ---
+
+class Report(db.Model):
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    date: Mapped[DateTime] = mapped_column(DateTime, unique=False, nullable=True)
+    start_date = db.Column(db.String(12), unique=False, nullable=False)
+    end_date = db.Column(db.String(12), unique=False, nullable=False)
+    prices = db.relationship('Build', back_populates='build')
 
 class Manufacturer(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -32,7 +38,6 @@ class Manufacturer(db.Model):
     part_case = db.relationship('PartCase', back_populates='manufacturer')
     part_psu = db.relationship('PartPsu', back_populates='manufacturer')
 
-
 class Build(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
@@ -44,7 +49,6 @@ class Build(db.Model):
     part_gpu = db.relationship('PartGpu', back_populates='build')
     part_case = db.relationship('PartCase', back_populates='build')
     part_psu = db.relationship('PartPsu', back_populates='build')
-
 
 class PartCpu(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -59,7 +63,6 @@ class PartCpu(db.Model):
     build = db.relationship('Build', back_populates='part_cpu', lazy=True, nullable=True)
     manufacturer = db.relationship('Manufacturer', back_populates='part_cpu', lazy=True, nullable=False)
 
-
 class PartCpuCooler(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
@@ -70,7 +73,6 @@ class PartCpuCooler(db.Model):
     manufacturer_id = db.Column(db.Integer, db.ForeignKey('manufacturer.id'))
     build = db.relationship('Build', back_populates='part_cpu_cooler', lazy=True, nullable=True)
     manufacturer = db.relationship('Manufacturer', back_populates='part_cpu_cooler', lazy=True, nullable=False)
-
 
 class PartMotherboard(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -83,7 +85,6 @@ class PartMotherboard(db.Model):
     build = db.relationship('Build', back_populates='part_motherboard', lazy=True, nullable=True)
     manufacturer = db.relationship('Manufacturer', back_populates='part_motherboard', lazy=True, nullable=False)
     size = db.Column(db.String, unique=False)
-
 
 class PartMemory(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -98,7 +99,6 @@ class PartMemory(db.Model):
     build = db.relationship('Build', back_populates='part_memory', lazy=True, nullable=True)
     manufacturer = db.relationship('Manufacturer', back_populates='part_memory', lazy=True, nullable=False)
 
-
 class PartStorage(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String,   unique=False, nullable=False)
@@ -110,7 +110,6 @@ class PartStorage(db.Model):
     manufacturer = db.relationship('Manufacturer', back_populates='part_storage', lazy=True, nullable=False)
     build_id = db.Column(db.Integer, db.ForeignKey('build.id'))
     manufacturer_id = db.Column(db.Integer, db.ForeignKey('manufacturer.id'))
-
 
 class PartGpu(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
@@ -134,7 +133,6 @@ class PartCase(db.Model):
     manufacturer_id = db.Column(db.Integer, db.ForeignKey('manufacturer.id'))
     manufacturer = db.relationship('Manufacturer', back_populates='part_case', lazy=True, nullable=False)
     build = db.relationship('Build', back_populates='part_case', lazy=True, nullable=True)
-
 
 class PartPsu(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)

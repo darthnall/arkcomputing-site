@@ -1,8 +1,8 @@
 from flask import render_template
 from flask import request
 from flask import Blueprint
-from website.client import Client
-from ..db.database import Product
+from ..client import Client
+from ..db import Product
 import os
 
 position = {
