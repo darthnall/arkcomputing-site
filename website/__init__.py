@@ -1,10 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from .db.database import db
+from .db import db
 import os
 
 def create_app():
-    print("Template folder path:", os.path.abspath('./templates'))
     app = Flask(__name__, template_folder=os.path.abspath('./templates'))
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 

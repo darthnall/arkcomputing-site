@@ -1,24 +1,25 @@
 from db import db
+from sqlalchemy import Integer, String, DateTime
+from sqlalchemy.orm import Mapped, mapped_column
 
 class Report(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    datetime = db.Column(db.DateTime, unique=False, nullable=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    date: Mapped[DateTime] = mapped_column(DateTime, unique=False, nullable=True)
     start_date = db.Column(db.String(12), unique=False, nullable=False)
     end_date = db.Column(db.String(12), unique=False, nullable=False)
     prices = db.relationship('Build', back_populates='build')
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(12), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(60), unique=False, nullable=False)
-    profile_picture = db.Column(db.String(20), unique=False, nullable=False)
-    dash_state = db.Column(db.String(20), unique=False, nullable=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    username: Mapped[str] = mapped_column(String(12), unique=True, nullable=False)
+    email: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
+    password: Mapped[str] = mapped_column(String(60), unique=False, nullable=False)
+    profile_picture: Mapped[str] = mapped_column(String(20), unique=False, nullable=False)
 
 
 class Manufacturer(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False,   nullable=False)
     partner = db.Column(db.Boolean, nullable=False, default=False)
     sponsor = db.Column(db.Boolean, nullable=False, default=False)
@@ -33,7 +34,7 @@ class Manufacturer(db.Model):
 
 
 class Build(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     part_cpu = db.relationship('PartCpu', back_populates='build')
     part_cpu_cooler = db.relationship('PartCpuCooler', back_populates='build')
@@ -46,7 +47,7 @@ class Build(db.Model):
 
 
 class PartCpu(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop = db.Column(db.Datetime, unique=False, nullable=False)
@@ -60,7 +61,7 @@ class PartCpu(db.Model):
 
 
 class PartCpuCooler(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop = db.Column(db.Datetime, unique=False, nullable=False)
@@ -72,7 +73,7 @@ class PartCpuCooler(db.Model):
 
 
 class PartMotherboard(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop = db.Column(db.Datetime, unique=False, nullable=False)
@@ -85,7 +86,7 @@ class PartMotherboard(db.Model):
 
 
 class PartMemory(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop  = db.Column(db.Datetime, unique=False, nullable=False)
@@ -99,7 +100,7 @@ class PartMemory(db.Model):
 
 
 class PartStorage(db.Model):
-    id = db.Column(db.Integer,  primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String,   unique=False, nullable=False)
     price = db.Column(db.Float,    unique=False, nullable=False)
     dop = db.Column(db.Datetime, unique=False, nullable=False)
@@ -112,7 +113,7 @@ class PartStorage(db.Model):
 
 
 class PartGpu(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop = db.Column(db.Datetime, unique=False, nullable=False)
@@ -124,7 +125,7 @@ class PartGpu(db.Model):
     manufacturer_id = db.Column(db.Integer, db.ForeignKey('manufacturer.id'))
 
 class PartCase(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop = db.Column(db.Datetime, unique=False, nullable=False)
@@ -136,7 +137,7 @@ class PartCase(db.Model):
 
 
 class PartPsu(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name = db.Column(db.String, unique=False, nullable=False)
     price = db.Column(db.Float, unique=False, nullable=False)
     dop  = db.Column(db.Datetime, unique=False, nullable=False)

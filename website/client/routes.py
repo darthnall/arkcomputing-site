@@ -2,8 +2,8 @@ from flask import abort
 from flask import render_template
 from flask import request
 from flask import Blueprint
-from .config import Client
-from .config import Product
+from ..db.database import Client
+from ..db.database import Product
 import os
 
 client_bp = Blueprint("client", __name__)
