@@ -1,27 +1,6 @@
 {% extends "index.html" %}
 {% block content %}
-<section class="carousel" aria-label="Gallery">
-    <a href="#slide-1">1</a>
-    <a href="#slide-2">2</a>
-    <a href="#slide-3">3</a>
-    <a href="#slide-4">4</a>
-    <a href="#slide-5">5</a>
-    <div class="slides">
-        <div id="slide-1">
-            <img src={{ url_for("static", filename="logo.jpg") }}>
-        </div>
-        <div id="slide-2">
-            <img src={{ url_for("static", filename="logo.jpg") }}>
-        </div>
-        <div id="slide-3">
-            <img src={{ url_for("static", filename="logo.jpg") }}>
-        </div>
-        <div id="slide-4">
-            <img src={{ url_for("static", filename="logo.jpg") }}>
-        </div>
-        <div id="slide-5">
-            <img src={{ url_for("static", filename="logo.jpg") }}>
-        </div>
-    </div>
-</section>
+<div class="billboard">
+    <img src={{ url_for("static", filename="logo.jpg") }}>
+</div>
 {% endblock content %}
