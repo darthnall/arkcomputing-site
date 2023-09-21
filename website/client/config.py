@@ -1,4 +1,5 @@
 import os
+from ..db import db
 
 class Client:
     def __init__(self, name):
@@ -36,6 +37,7 @@ class Client:
 
 class Product:
     def __init__(self, id):
+        # query = query_db(db)
         price = 999.999
         self._id = id
         self._name = "Example Product"
