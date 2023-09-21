@@ -1,10 +1,15 @@
-from flask import abort
 from flask import render_template
 from flask import request
 from flask import Blueprint
-from ..db.database import Client
+from website.client import Client
 from ..db.database import Product
 import os
+
+position = {
+        "mark": "president",
+        "noah": "vice president",
+        "blake": "chief technical officer",
+        }
 
 client_bp = Blueprint("client", __name__)
 
@@ -18,10 +23,8 @@ def home():
 
 @client_bp.route("/about")
 def about():
-    return render_template("about/home.html", client=client, staff=staff, position={"mark":"president",
-                                                                                    "noah":"vice president",
-                                                                                    "blake": "chief technical officer",
-                                                                                    })
+    return render_template("about/home.html", client=client, staff=staff, position=position)
+
 # Dynamic routes
 @client_bp.route("/store", methods = ["POST", "GET"])
 @client_bp.route("/shop",  methods = ["POST", "GET"])

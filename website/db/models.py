@@ -1,4 +1,4 @@
-from db import db
+from website.db import db
 from sqlalchemy import Integer, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column
 
