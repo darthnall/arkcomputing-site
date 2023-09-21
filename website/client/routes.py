@@ -21,8 +21,8 @@ def store():
     error = None
     if request.method == "POST":
         searchword = request.args.get("product")
-        return render_template("product.html", searchword=searchword, client=client, title="Store")
-    return render_template("store.html", client=client, title="Store")
+        return render_template("store/product.html", searchword=searchword, client=client, title="Store")
+    return render_template("store/home.html", client=client, title="Store")
 
 # Static routes
 @client_bp.route("/about")
