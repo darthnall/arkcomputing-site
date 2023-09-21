@@ -1,3 +1,5 @@
+/* Global */
+
 :root {
     --accent: yellow;
 }
@@ -13,18 +15,8 @@ body {
     background-color: rgba(16, 16, 16, 1);
 }
 
-img {
-    max-width: 100%;
-    border: 1px solid rgba(80, 80, 80, 1);
-    border-radius: 6px;
-}
-
 a p {
     color: white;
-}
-
-nav a {
-    padding: 10px;
 }
 
 footer {
@@ -38,6 +30,14 @@ footer a, p {
     margin: 0 10px;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Card */
+
 .card {
     display: flex;
     border-style: solid;
@@ -45,53 +45,67 @@ footer a, p {
     border-color: rgba(52, 52, 52, 0.2);
     border-radius: 6px;
     justify-content: space-between;
+    align-items: center;
     margin: 20px;
-    flex: 0 0 30%;
+    flex: 0 0 40%;
+}
+
+.card img {
+    max-width: 100%;
 }
 
 .left-aligned {
     float: left;
     clear: left;
+    animation-name: card-slide-left;
+    animation-duration: 3s;
+    animation-fill-mode: both;
 }
 
 .right-aligned {
     float: right;
     clear: right;
+    animation-name: card-slide-right;
+    animation-duration: 3s;
+    animation-fill-mode: both;
 }
 
 .image-container {
-    flex: inherit;
+    flex: 0 0 30%;
     position: relative;
-}
-
-.text-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    padding: 10px;
-    width: 100%;
+    border-radius: 6px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .text-content {
     flex: 0 0 65%;
     color: white;
-}
-
-.text-content h2 {
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 0;
+    margin-bottom: 20px;
 }
 
 .text-content h3 {
     color: rgba(255, 255, 255, 0.5);
-    margin-top: 5px;
-    margin-right: 10px;
-    margin-left: 10px;
 }
+
+@keyframes card-slide-left {
+    from {transform: rotateY(-90)}
+    to {transform: rotateY(90)}
+}
+
+@keyframes card-slide-right {
+    from {transform: rotateY(90)}
+    to {transform: rotateY(-90)}
+}
+
+/* Links */
 
 .subtle-link {
     margin: 0;
+}
+
+/* Product */
+
+.product-image {
+    max-width: 100%;
 }

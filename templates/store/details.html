@@ -1,20 +1,33 @@
 {% extends "index.html" %}
 {% block content %}
-  <section class="section">
-    <div class="container">
-      <h1 class="title">
-       Product Details
-      </h1>
-      {% if searchword %}
-       <p class="subtitle">
-        {{ searchword }}
-       </p>
-       {% else %}
-       <p class="subtitle">
-        No product entered.
-       </p>
-       {% endif %}
-      <button class="button is-primary">Confirm</button>
+<div class="container">
+    <div class="product-image">
+        <img src={{ url_for("static", filename="logo.jpg") }}/>
     </div>
-  </section>
+    <div class="product-name left-aligned">
+        <p>Name: {{  product.name()  }}</p>
+        <p>ID: {{  product.id()  }}</p>
+    </div>
+    <div class="product-description">
+        <h2>Product Details:</h2>
+        <table id="description_table">
+            <tr>
+                <td>Name</td>
+                <td>{{ product.name() }}
+            </tr>
+            <tr>
+                <td>Price</td>
+                <td>{{ product.price() }}
+            </tr>
+            <tr>
+                <td>Date Purchased</td>
+                <td>{{ product.dop() }}
+            </tr>
+            <tr>
+                <td>Build ID</td>
+                <td>{{ product.build_id() }}
+            </tr>
+        </table>
+    </div>
+</div>
 {% endblock content %}

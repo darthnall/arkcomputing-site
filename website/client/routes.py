@@ -3,6 +3,7 @@ from flask import render_template
 from flask import request
 from flask import Blueprint
 from .config import Client
+from .config import Product
 import os
 
 client_bp = Blueprint("client", __name__)
@@ -15,19 +16,19 @@ staff = client.staff()
 def home():
     return render_template('home.html', client=client, title="Home")
 
-@client_bp.route("/store", methods = ["POST", "GET"])
-@client_bp.route("/shop",  methods = ["POST", "GET"])
-def store():
-    error = None
-    if request.method == "POST":
-        searchword = request.args.get("product")
-        return render_template("store/product.html", searchword=searchword, client=client, title="Store")
-    return render_template("store/home.html", client=client, title="Store")
-
-# Static routes
 @client_bp.route("/about")
 def about():
     return render_template("about/home.html", client=client, staff=staff, position={"mark":"president",
                                                                                     "noah":"vice president",
                                                                                     "blake": "chief technical officer",
                                                                                     })
+# Dynamic routes
+@client_bp.route("/store", methods = ["POST", "GET"])
+@client_bp.route("/shop",  methods = ["POST", "GET"])
+def store():
+    if request.method == "POST":
+        product = Product(id=0)
+        searchword = request.args.get("product")
+        return render_template("store/product.html", searchword=searchword, client=client, title=product.name, product=product)
+    product = Product(id=0)
+    return render_template("store/details.html", client=client, product=product, title="Store")
