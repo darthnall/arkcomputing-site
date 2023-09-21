@@ -27,4 +27,7 @@ def store():
 # Static routes
 @client_bp.route("/about")
 def about():
-    return render_template("about/home.html", client=client, staff=staff, title="About")
+    return render_template("about/home.html", client=client, staff=staff, position={"mark":"president",
+                                                                                    "noah":"vice president",
+                                                                                    "blake": "chief technical officer",
+                                                                                    })

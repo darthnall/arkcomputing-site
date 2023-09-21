@@ -1,24 +1,6 @@
 {% extends "index.html" %}
 {% block content %}
     {% for employee in staff %}
-        <div class="card">
-            {% if staff.index(employee) % 2 == 0 %}
-                <div class="image-container">
-                    <img src={{ url_for("static", filename="about/" ~ employee ~ ".jpg") }}>
-                    <div class="text-caption">{{ employee.title() }}</div>
-                </div>
-                <div class="text-content">
-                    <p>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</p>
-                </div>
-            {% else %}
-                <div class="text-content">
-                    <p>Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.</p>
-                </div>
-                <div class="image-container">
-                    <img src={{ url_for("static", filename="about/" ~ employee ~ ".jpg") }}>
-                    <div class="text-caption">{{ employee.title() }}</div>
-                </div>
-            {% endif %}
-        </div>
+        {% block card %}{% endblock card %}
     {% endfor %}
 {% endblock content %}
