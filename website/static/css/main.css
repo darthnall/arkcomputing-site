@@ -15,21 +15,38 @@ body {
 
 img {
     max-width: 100%;
+    border: 1px solid rgba(80, 80, 80, 1);
+    border-radius: 6px;
 }
 
 a p {
     color: white;
 }
 
+nav a {
+    padding: 10px;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+footer a, p {
+    margin: 0 10px;
+}
+
 .card {
+    display: flex;
     border-style: solid;
     border-width: 2px;
     border-color: rgba(52, 52, 52, 0.2);
     border-radius: 6px;
-    display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     margin: 20px;
+    flex: 0 0 30%;
 }
 
 .left-aligned {
@@ -43,7 +60,7 @@ a p {
 }
 
 .image-container {
-    flex: 0 0 30%;
+    flex: inherit;
     position: relative;
 }
 
@@ -63,30 +80,16 @@ a p {
 }
 
 .text-content h2 {
-    color: white;
-    margin-bottom: 5px;
     margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0;
 }
 
 .text-content h3 {
     color: rgba(255, 255, 255, 0.5);
-    margin-top: 0;
+    margin-top: 5px;
+    margin-right: 10px;
     margin-left: 10px;
-}
-
-nav a {
-    padding: 10px;
-}
-
-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-footer a, p {
-    margin: 0 10px;
 }
 
 .subtle-link {
