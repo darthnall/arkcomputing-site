@@ -8,7 +8,7 @@ def create_app():
 
     db.init_app(app)
 
-    from website.client.routes import client_bp
+    from website.public.routes import client_bp
     app.register_blueprint(client_bp, url_prefix='')
 
     with app.app_context():

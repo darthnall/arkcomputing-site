@@ -1,8 +1,10 @@
 from flask import render_template
 from flask import request
 from flask import Blueprint
-from ..client import Client
+from flask import redirect
+from ..public import Client
 from ..db import Product
+from ..db import square_client
 import os
 
 position = {
@@ -32,6 +34,10 @@ def store():
     if request.method == "POST":
         product = Product(id=0)
         searchword = request.args.get("product")
-        return render_template("store/product.html", searchword=searchword, client=client, title=product.name, product=product)
+        return render_template("store/home.html", searchword=searchword, client=client, title=product.name, product=product)
     product = Product(id=0)
     return render_template("store/details.html", client=client, product=product, title="Store")
+
+@client_bp.route("/submit", methods=["GET", "POST"])
+def submit():
+    return render_template("home.html")

@@ -1,4 +1,7 @@
 import os
+from flask_wtf import FlaskForm
+from wtforms import StringField
+from wtforms.validators import DataRequired
 
 class Client:
     def __init__(self, name):

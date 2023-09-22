@@ -1,6 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from square.client import Client as SquareClient
+from os import environ
 
 db = SQLAlchemy()
+square_client = SquareClient(access_token=environ['SQUARE_ACCESS_TOKEN'], environment='sandbox')
 
 class Product:
     def __init__(self, id):
