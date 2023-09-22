@@ -1,53 +1,57 @@
+# DB imports
 from flask_sqlalchemy import SQLAlchemy
 from square.client import Client as SquareClient
+from sqlalchemy import create_engine
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.orm import sessionmaker
+
+# Global imports
 from os import environ
+from typing import Any
+from returns.result import Failure, Success, Result, safe
+
+# Local imports
+from .models import Product
 
 db = SQLAlchemy()
+db_url = "sqlite:///site.db"
 square_client = SquareClient(access_token=environ['SQUARE_ACCESS_TOKEN'], environment='sandbox')
 
-class Product:
-    def __init__(self, id):
-        # query = query_db(db)
-        price = 999.999
-        self._id = id
-        self._name = "Example Product"
-        self._price = f"${price:.2f}"
-        self._dop = "04-21-2023"
-        self._purchased_by = "Mark Thude"
-        self._build_id = 0
+class Database:
+    def __init__(self, db_url):
+        self.engine = create_engine(db_url)
+        self.Session = sessionmaker(bind=self.engine)
 
-    def id(self) -> str | None:
-        if self._id is not None:
-            return str(self._id)
-        else:
-            return None
+    @safe
+    def get_all_products(self):
+        products = self.session.query(Product).all()
+        return products
 
-    def name(self) -> str | None:
-        if self._name is not None:
-            return str(self._name)
-        else:
-            return None
+    @safe
+    def add_product(self, product):
+        self.session.add(product)
+        self.session.commit()
 
-    def price(self) -> str | None:
-        if self._price is not None:
-            return str(self._price)
+    @safe
+    def rm_product(self, id):
+        product = self.session.query(Product).get(id)
+        if product:
+            self.session.delete(product)
+            self.session.commit()
         else:
-            return None
+            raise ValueError(f"Product with ID {id} was not found.")
 
-    def dop(self) -> str | None:
-        if self._dop is not None:
-            return str(self._dop)
-        else:
-            return None
+    def __enter__(self):
+        self.session = self.Session()
+        return self.session
 
-    def purchased_by(self) -> str | None:
-        if self._purchased_by is not None:
-            return str(self._purchased_by)
-        else:
-            return None
+    def __exit__(self, type, value, traceback):
+        if type is not None:
+            self.session.rollback()
+        self.session.close()
 
-    def build_id(self) -> str | None:
-        if self._build_id is not None:
-            return str(self._build_id)
-        else:
-            return None
+if __name__ == "__main__":
+    with Database(db_url) as session:
+        product = Product(name="Test Product Name")
+        session.add(product)
+        session.commit()

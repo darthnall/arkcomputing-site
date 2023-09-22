@@ -2,7 +2,7 @@ from flask import render_template
 from flask import request
 from flask import Blueprint
 from flask import redirect
-from ..public import Client
+from ..config import Client
 from ..db import Product
 from ..db import square_client
 import os
@@ -16,7 +16,6 @@ position = {
 client_bp = Blueprint("client", __name__)
 
 client = Client(name=os.environ["CLIENT_NAME"])
-staff = client.staff()
 
 # Static routes
 @client_bp.route("/")

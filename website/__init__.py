@@ -1,10 +1,10 @@
 from flask import Flask
-from .db import db
+from .db import db, db_url
 import os
 
 def create_app():
     app = Flask(__name__, template_folder=os.path.abspath('./templates'))
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 
     db.init_app(app)
 

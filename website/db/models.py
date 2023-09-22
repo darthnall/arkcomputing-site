@@ -13,10 +13,8 @@ class User(db.Model):
 class Product(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(12), unique=False, nullable=False)
-    name: Mapped[str] = mapped_column(String(12), unique=False, nullable=False)
 
 # Future inventory stuff ---
-
 class Report(db.Model):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     date: Mapped[DateTime] = mapped_column(DateTime, unique=False, nullable=True)
