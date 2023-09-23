@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container">
+    <img src={{ url_for("static", filename="logo.jpg") }}>
+</div>
+<div class="container">
+    <form method="post" name="name" action="{{ url_for('client.add_item') }}">
+        <label for="name">Product Name: </label><input type="text" name="name" required>
+        <label for="price">Unit Price: </label><input type="text" name="price" required>
+        <label for="qty">Number of items: </label><input type="text" name="qty">
+        <label for="is_hot">Product is hot: </label><input type="checkbox" name="is_hot">
+        <label for="dop">Date purchased: </label><input type="datetime-local" name="dop">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+{% endblock content %}
