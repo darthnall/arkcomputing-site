@@ -14,8 +14,8 @@ from typing import Any
 from returns.result import Failure, Success, Result, safe
 
 # Local imports
-from db.models import Product, User
-from db.models import ProductSchema, UserSchema
+from website.db import Product, User
+from website.db import ProductSchema, UserSchema
 
 db = SQLAlchemy()
 ma = Marshmallow(app)
