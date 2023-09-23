@@ -1,18 +1,6 @@
-# Form validation imports
-from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired
-
-# Type imports
 from dataclasses import dataclass, field
-
-# Generic imports
 from datetime import datetime
 
-# Dataclasses for front-end
-#
-# These classes are purely for the front-end,
-# and they call the Database class for their data.
 
 @dataclass(init=True, repr=True)
 class Product:
@@ -30,7 +18,7 @@ class Client:
     id: int = field(repr=False, default=0)
     name: str = field(default="Ark Computing")
     ext: str = field(default="LLC")
-    staff: list = field(default=["mark", "noah", "blake"])
+    staff: list[str] = field(default_factory=list)
 
-    def fullname(self, name, ext) -> str:
-        return f"{name} {ext}"
+    def fullname(self) -> str:
+        return f"{self.name}, {self.ext}"

@@ -2,10 +2,8 @@ from flask import render_template
 from flask import request
 from flask import Blueprint
 from flask import redirect
-from ..config import Client
-from ..db import Product
-from ..db import square_client
-import os
+
+from website.public import Client
 
 position = {
         "mark": "president",
@@ -14,8 +12,7 @@ position = {
         }
 
 client_bp = Blueprint("client", __name__)
-
-client = Client(name=os.environ["CLIENT_NAME"])
+client = Client(id=0, name="Ark Computing", ext="LLC", staff=["mark", "noah", "blake"])
 
 # Static routes
 @client_bp.route("/")
@@ -24,18 +21,13 @@ def home():
 
 @client_bp.route("/about")
 def about():
-    return render_template("about/home.html", client=client, staff=staff, position=position)
+    return render_template("about/home.html", client=client, staff=client.staff, position=position)
 
 # Dynamic routes
 @client_bp.route("/store", methods = ["POST", "GET"])
 @client_bp.route("/shop",  methods = ["POST", "GET"])
 def store():
-    if request.method == "POST":
-        product = Product(id=0)
-        searchword = request.args.get("product")
-        return render_template("store/home.html", searchword=searchword, client=client, title=product.name, product=product)
-    product = Product(id=0)
-    return render_template("store/details.html", client=client, product=product, title="Store")
+    return render_template("store/details.html", title="Store")
 
 @client_bp.route("/submit", methods=["GET", "POST"])
 def submit():
