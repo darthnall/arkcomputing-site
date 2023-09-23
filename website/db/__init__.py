@@ -8,6 +8,7 @@ from square.client import Client as SquareClient
 # Global imports
 from os import environ
 
+# Initialize database
 db = SQLAlchemy()
 ma = Marshmallow(app)
 

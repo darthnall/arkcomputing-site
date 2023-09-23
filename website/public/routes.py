@@ -5,6 +5,7 @@ from flask import redirect
 
 from website.public import Client
 
+# Eventually, this dictionary will be created by Client
 position = {
         "mark": "president",
         "noah": "vice president",

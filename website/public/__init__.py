@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 
 
+# Back-end creates these objects, the front-end calls them after creation.
 @dataclass(init=True, repr=True)
 class Product:
     id: int
