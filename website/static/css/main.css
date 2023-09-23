@@ -4,6 +4,10 @@
     --accent: yellow;
 }
 
+.button {
+    color: black;
+}
+
 html {
     font-family: "Noto Sans", sans-serif;
 }
@@ -139,5 +143,4 @@ footer a, p {
 .destructive:hover {
     color: red;
     background-color: white;
-    animation-duration: 2s;
 }

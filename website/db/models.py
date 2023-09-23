@@ -17,11 +17,12 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
 
 class Product(db.Model):
     id            = db.Column(db.String(32), primary_key=True)
-    name          = db.Column(db.String(32), unique=False, nullable=True)
-    price         = db.Column(db.Float(12),  unique=False, nullable=True)
+    name          = db.Column(db.String(32), unique=False, nullable=False)
+    price         = db.Column(db.Float(12),  unique=False, nullable=False)
+    qty           = db.Column(db.Integer, unique=False, nullable=True)
+    dop           = db.Column(db.DateTime,   unique=True,  nullable=True)
     is_hot        = db.Column(db.Boolean,    unique=False, nullable=True, default=False)
     category      = db.Column(db.String(12), unique=False, nullable=True, default="")
-    tags          = db.Column(db.List(db.String(12), unique=False, nullable=True, default=["test_tag"]))
 
 class ProductSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
@@ -30,30 +31,3 @@ class ProductSchema(ma.SQLAlchemyAutoSchema):
 
 
 # Future inventory stuff
-class Report(db.Model):
-    #id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    #date: Mapped[DateTime] = mapped_column(DateTime, unique=False, nullable=True)
-    start_date = db.Column(db.String(12), unique=False, nullable=False)
-    end_date = db.Column(db.String(12), unique=False, nullable=False)
-    prices = db.relationship('Build', back_populates='build')
-
-class ReportSchema(ma.SQLAlchemyAutoSchema):
-    pass
-
-
-class Manufacturer(db.Model):
-    #id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name = db.Column(db.String, unique=False,   nullable=False)
-    partner = db.Column(db.Boolean, nullable=False, default=False)
-    sponsor = db.Column(db.Boolean, nullable=False, default=False)
-
-class ManufacturerSchema(ma.SQLAlchemyAutoSchema):
-    pass
-
-
-class Build(db.Model):
-    #id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    name = db.Column(db.String, unique=False, nullable=False)
-
-class BuildSchema(ma.SQLAlchemyAutoSchema):
-    pass

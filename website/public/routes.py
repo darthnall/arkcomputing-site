@@ -2,8 +2,11 @@ from flask import render_template
 from flask import request
 from flask import Blueprint
 from flask import redirect
+from flask import jsonify
+from sqlalchemy.exc import SQLAlchemyError
 
 from website.public import Client
+from website.db.database import Query
 
 # Eventually, this dictionary will be created by Client
 position = {
@@ -18,7 +21,7 @@ client = Client(id=0, name="Ark Computing", ext="LLC", staff=["mark", "noah", "b
 # Static routes
 @client_bp.route("/")
 def home():
-    return render_template('home.html', client=client, title="Home")
+    return render_template('home.html', client=client)
 
 @client_bp.route("/about")
 def about():
@@ -33,3 +36,30 @@ def store():
 @client_bp.route("/submit", methods=["GET", "POST"])
 def submit():
     return render_template("home.html")
+
+@client_bp.route("/add_item", methods=["POST"])
+def add_item():
+    name = request.form.get("name", "")
+    price = request.form.get("price", "0")
+    qty = request.form.get("qty", "0")
+    is_hot = request.form.get("is_hot", "")
+    dop = request.form.get("dop", "0")
+
+    if not name or not dop:
+        return "Name and Date of Purchase are required fields. Please try again."
+
+    payload = {
+            "name": name,
+            "price": price,
+            "qty": qty,
+            "is_hot": is_hot,
+            "dop": dop,
+            }
+
+    #try:
+    #    with Query() as query:
+    #        query.add_item(payload=payload)
+    #except SQLAlchemyError:
+    #    redirect("/")
+
+    return jsonify(payload)

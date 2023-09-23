@@ -1,11 +1,27 @@
-from sqlalchemy import create_engine
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy.orm import sessionmaker
-from typing import Any
-from returns.result import Failure, Success, Result, safe
+import uuid
 
+from website.db import db
+from website.db.converters import *
 from website.db.models import Product, User
 from website.db.models import ProductSchema, UserSchema
 
-# This is where the db logic will go
-print("Hello from database.py")
+product_schema = ProductSchema()
+user_schema = UserSchema()
+
+class Query:
+    def __init__(self):
+        pass
+
+    def add_item(self, payload):
+        self.id = uuid.uuid4()
+        for key, value in payload.items():
+            print(f"{key}:{value}, {self.id}")
+
+    def get_items(self):
+        pass
+
+    def __enter__(self):
+        db.session.begin()
+
+    def __exit__(self):
+        db.session.close()
