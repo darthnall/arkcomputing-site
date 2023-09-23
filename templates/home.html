@@ -1,6 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
-<div class="billboard">
+<div class="container">
     <img src={{ url_for("static", filename="logo.jpg") }}>
+</div>
+<div class="container">
+    <h1>Nice</h1>
+    <a class="button destructive" href="/dbtest">Test db?</a>
 </div>
 {% endblock content %}

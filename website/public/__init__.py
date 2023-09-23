@@ -19,6 +19,7 @@ class Client:
     id: int = field(repr=False, default=0)
     name: str = field(default="Ark Computing")
     ext: str = field(default="LLC")
+    homepage: str = field(default="https://arkcomputing.net/")
     staff: list[str] = field(default_factory=list)
 
     def fullname(self) -> str:

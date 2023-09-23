@@ -31,12 +31,6 @@ footer a, p {
     margin: 0 10px;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 /* Card */
 
 .card {
@@ -113,4 +107,37 @@ footer a, p {
 
 .product-image {
     max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 3rem;
+    color: white;
+    border-color: rgba(32, 32, 32, 1);
+    border-width: 6px;
+    border-radius: 6px;
+    border-style: solid;
+}
+
+.container {
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    padding: 3rem;
+    color: white;
+    border-color: rgba(32, 32, 32, 1);
+    border-width: 6px;
+    border-radius: 6px;
+    border-style: solid;
+}
+
+.destructive {
+    color: white;
+    background-color: red;
+    align-self: auto;
+}
+
+.destructive:hover {
+    color: red;
+    background-color: white;
+    animation-duration: 2s;
 }

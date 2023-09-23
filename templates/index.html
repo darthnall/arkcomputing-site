@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 	{% if title %}
-		<title>{{ title.title() }} | {{ client.brand() }}</title>
+		<title>{{ title.title() }} | {{ client.name }}</title>
 	{% else %}
-		<title>{{ client.brand() }}</title>
+		<title>{{ client.name }}</title>
 	{% endif %}
 </head>
 <body>
