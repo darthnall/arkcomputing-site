@@ -1,5 +1,5 @@
-# Website Template
+# Ark Computing's Homepage
 
-## Website information
+## Do not redistribute
 
 (c) Blake Nall 2023. All rights reserved.
