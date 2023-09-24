@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	{% if title %}
 		<title>{{ title.title() }} | {{ client.name }}</title>
 	{% else %}
@@ -13,7 +14,7 @@
 	{% endif %}
 </head>
 <body>
-    {% block content %}{% endblock content %}
+    {% block content %}{% endblock content %}    
     {% include "layout/footer.html" %}
 </body>
 </html>
