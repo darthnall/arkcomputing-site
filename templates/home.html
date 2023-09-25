@@ -1,10 +1,38 @@
 {% extends "index.html" %}
 {% block content %}
 <div class="container">
-    <img src={{ url_for("static", filename="logo.jpg") }}>
+    <img src="{{ url_for('static', filename='logo.jpg') }}">
 </div>
 <article>
     <h2>This is an article</h2>
     <p>Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit enim labore culpa sint ad nisi Lorem pariatur mollit ex esse exercitation amet. Nisi anim cupidatat excepteur officia. Reprehenderit nostrud nostrud ipsum Lorem est aliquip amet voluptate voluptate dolor minim nulla est proident. Nostrud officia pariatur ut officia. Sit irure elit esse ea nulla sunt ex occaecat reprehenderit commodo officia dolor Lorem duis laboris cupidatat officia voluptate. Culpa proident adipisicing id nulla nisi laboris ex in Lorem sunt duis officia eiusmod. Aliqua reprehenderit commodo ex non excepteur duis sunt velit enim. Voluptate laboris sint cupidatat ullamco ut ea consectetur et est culpa et culpa duis.</p>
 </article>
+
+<div class="container">
+    <div class="carousel flex-container" x-data="{ 
+        state: 0,
+        increase_state: function () { this.state >= 4 ? this.state = 0 : this.state++; }, 
+        decrease_state: function () { this.state <= 0 ? this.state = 4 : this.state--; },
+        }">
+        <div><button @click="decrease_state()">&lt;</button></div>
+        <div x-show="state == 0"
+        class="carousel-img"
+        >
+            <img src='{{ url_for("static", filename="carousel/logo0.jpg") }}'>
+        </div>
+        <div x-show="state == 1">
+            <img src='{{ url_for("static", filename="carousel/logo1.jpg") }}'>
+        </div>
+        <div x-show="state == 2">
+            <img src='{{ url_for("static", filename="carousel/logo2.jpg") }}'>
+        </div>
+        <div x-show="state == 3">
+            <img src='{{ url_for("static", filename="carousel/logo3.jpg") }}'>
+        </div>
+        <div x-show="state == 4">
+            <img src='{{ url_for("static", filename="carousel/logo4.jpg") }}'>
+        </div>
+        <div><button @click="increase_state()">&gt;</button></div>
+    </div>
+</div>
 {% endblock content %}

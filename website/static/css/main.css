@@ -1,7 +1,21 @@
 /* Global */
 
 :root {
-    --accent: yellow;
+    --accent: rgb(255, 255, 0);
+}
+
+button {
+    border-radius: 36px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(230, 230, 230, 0.4);
+    color: black;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 .button {
@@ -49,9 +63,7 @@ footer a, p {
     flex: 0 0 40%;
 }
 
-.carousel {
-    color: white;
-}
+
 
 .card img {
     max-width: 100%;
@@ -128,10 +140,7 @@ footer a, p {
     display: flex;
     padding: 3rem;
     color: white;
-    border-color: rgba(32, 32, 32, 1);
-    border-width: 6px;
-    border-radius: 6px;
-    border-style: solid;
+    
 }
 
 .destructive {
@@ -143,4 +152,28 @@ footer a, p {
 .destructive:hover {
     color: red;
     background-color: white;
+}
+
+.carousel-img {
+    position: relative;
+}
+
+.slide-in {
+    animation-name: slide-in;
+    animation-duration: 3s;
+}
+
+.slide-out {
+    animation-name: slide-out;
+    animation-duration: 3s;
+}
+
+@keyframes slide-in {
+    from {transform: translateX(100%)}
+    to {transform: translateX(0%)}
+}
+
+@keyframes slide-out {
+    from {transform: translateX(-100%)}
+    to {transform: translateX(0%)}
 }
